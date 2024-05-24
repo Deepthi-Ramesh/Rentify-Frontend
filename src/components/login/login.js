@@ -5,6 +5,7 @@ import { Grid, MenuItem } from '@mui/material';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import Buyerdashboard from '../buyer/buyer';
+import { HOST_URL } from "../../../Constants";
 function Login(){
     const history=useNavigate();
     const [errors,setErrors]=useState({});
@@ -38,7 +39,7 @@ function Login(){
       const onsubmit = async(e) => {
             if(validate()) {
                   try {
-                      const response =  await axios.post("http://localhost:5000/login", {
+                      const response =  await axios.post(`${HOST_URL}/login`, {
                       User:user
                     })
 

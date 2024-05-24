@@ -7,6 +7,8 @@ import axios from "axios";
 import { common } from "@mui/material/colors";
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import AddIcon from '@mui/icons-material/Add';
+import { HOST_URL } from "../../../Constants";
+
 function  Sellerdashboard(props){
     const history=useNavigate();
     let {userid}=useParams();
@@ -23,7 +25,7 @@ function  Sellerdashboard(props){
    
     const fetchproperty = async() => {
       try {
-        const response =  await axios.get(`http://localhost:5000/fetchproperties/${userid}`, {
+        const response =  await axios.get(`${HOST_URL}/fetchproperties/${userid}`, {
         })
 
           setproperties(response?.data?.data);

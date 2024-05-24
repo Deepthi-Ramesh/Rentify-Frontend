@@ -8,7 +8,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import CardDetails from "./cardDetails";
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
-
+import { HOST_URL } from "../../../Constants";
 function SingleCard({property,type,id}){
 
   
@@ -33,7 +33,7 @@ function SingleCard({property,type,id}){
 
   const deleteproperty = async(id) =>{
     try{
-       const response=await axios.post("http://localhost:5000/deleteproperty",{
+       const response=await axios.post(`${HOST_URL}/deleteproperty`,{
           id:id
        })
        if(response.status==200){
@@ -53,7 +53,7 @@ function SingleCard({property,type,id}){
     try{
        setsellerclicked(true);
        setOpeninterested(true)
-       const response=await axios.get(`http://localhost:5000/getsellerdetails/${id}`,{
+       const response=await axios.get(`${HOST_URL}/getsellerdetails/${id}`,{
        })
        if(response.status==200){
              setsellerdetails(response?.data?.data[0]);
@@ -66,7 +66,7 @@ function SingleCard({property,type,id}){
 
   const  sendmaildetails = () =>{
     try{
-       const response= axios.post(`http://localhost:5000/sendmaildeatils`,{
+       const response= axios.post(`${HOST_URL}/sendmaildeatils`,{
         id:id,
         sellerdetails:sellerdetails
         
@@ -83,7 +83,7 @@ function SingleCard({property,type,id}){
   const liketheproperty = async(id) =>{
     try{
         
-       const response=await axios.post(`http://localhost:5000/liketheproperty`,{
+       const response=await axios.post(`${HOST_URL}/liketheproperty`,{
         id:id
        })
        if(response.status==200){

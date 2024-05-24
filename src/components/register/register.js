@@ -8,7 +8,7 @@ import Snackbar from '@mui/material/Snackbar';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
-
+import { HOST_URL } from "../../../Constants";
 
 function Register(){
     const history=useNavigate();
@@ -90,7 +90,7 @@ function Register(){
         if(validate()) {
               user.firstname=user.firstname +' '+user.lastname;
               try {
-                var url ="http://localhost:5000/app";
+                var url =`${HOST_URL}/app`;
                 const response = await axios.post(
                 url,{
                   User:user

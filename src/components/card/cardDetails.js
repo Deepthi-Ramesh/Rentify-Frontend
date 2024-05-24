@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import { Grid, MenuItem } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
-
+import { HOST_URL } from "../../../Constants";
 function CardDetails({propertyprops}){
 
     const history = useNavigate();
@@ -82,7 +82,7 @@ function CardDetails({propertyprops}){
       const onsubmit = async(e) => {
         if(validate()) {
                   try {
-                    const response =  await axios.post("http://localhost:5000/addproperty", {
+                    const response =  await axios.post(`${HOST_URL}/addproperty`, {
                     Property:property
                     })
                     if(response.status==200){
@@ -99,7 +99,7 @@ function CardDetails({propertyprops}){
        const updateproperty = async(e) =>{
         try{
             if(validate()){
-              const response=await axios.put("http://localhost:5000/updateproperty",{
+              const response=await axios.put(`${HOST_URL}/updateproperty`,{
                   property:property
                 } 
             )}

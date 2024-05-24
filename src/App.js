@@ -26,7 +26,7 @@ function App() {
   //       var sendTodo=todo;
   //       settodo('');
   //   if(sendTodo.length<=255 && sendTodo.length!=0){
-  //     const response = await axios.post("http://localhost:5000/app", {
+  //     const response = await axios.post("HOST_URL/app", {
   //       todo:sendTodo
   //     })
   //     console.log(response);
@@ -45,7 +45,7 @@ function App() {
   //     const deleteTodo = async(id) => {
   //       console.log(id)
   //       try {
-  //         const response = await axios.post("http://localhost:5000/deleteTodo", {
+  //         const response = await axios.post("HOST_URL/deleteTodo", {
   //           id:id
   //         })
   //         setIsReloadTodos(true);
@@ -55,7 +55,7 @@ function App() {
   //         }
   //     const getAllTodos=async()=>{
   //       try{
-  //         const response=await axios.get("http://localhost:5000/todos")
+  //         const response=await axios.get("HOST_URL/todos")
   //         settodos(response.data.data);
   //     }
   //     catch(error){
@@ -65,7 +65,7 @@ function App() {
   //   const completedTodo = async(id) => {
   //     console.log("id : ", id);
   //     try {
-  //       const response = await axios.put("http://localhost:5000/completedTodo", {
+  //       const response = await axios.put("HOST_URL/completedTodo", {
   //         id:id
   //       })
   //       setIsReloadTodos(true);

@@ -4,6 +4,7 @@ import React, { useEffect ,useState} from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import SingleCard from "../card/card";
 import axios from "axios";
+import { HOST_URL } from "../../../Constants";
 
 function  Buyerdashboard(){
 
@@ -33,14 +34,14 @@ function  Buyerdashboard(){
         const matchesBedrooms = filters.noofbedrooms ? property.noofbeadrooms === filters.noofbedrooms : true;
   
         return  matchesLocation && matchesBedrooms;
-      });
+      });3
   
       setproperties(filteredProperties);
     }
   
     const fetchproperty = async(e) => {
         try {
-              const response =  await axios.get("http://localhost:5000/fetchpropertiesforbuyer", {
+              const response =  await axios.get(`${HOST_URL}/fetchpropertiesforbuyer`, {
               })
 
               if(response.status==200){
