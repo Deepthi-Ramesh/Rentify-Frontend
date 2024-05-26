@@ -46,7 +46,7 @@ function Register(){
     
         if ("email" in fieldValues) {
           temp.email= 
-          fieldValues.email === "" ? "Email is required" : "";
+          fieldValues.email === "" ? "Email is required" : /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(fieldValues.email)?"":"Invalid email";
         }
 
         if ("phoneno" in fieldValues) {
@@ -65,7 +65,7 @@ function Register(){
 
         if ("password" in fieldValues) {
           temp.password=
-            fieldValues.password === "" ? "password is required" : "";
+            fieldValues.password === "" ?"password is required":/^[A-Z]*$/.test(fieldValues)?"":"password should be strong";
         }
 
         if ("confirm_password" in fieldValues) {
@@ -120,22 +120,12 @@ function Register(){
    
   return(
       <Grid container display={'flex'} justifyContent={'center'} alignItems={'center'} width={'100%'} height={'100vh'}  >
-          {snackbar?<Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-          <Alert
-            onClose={handleClose}
-            severity="success"
-            variant="filled"
-            sx={{ width: '100%' }}
-          >
-            This is a success Alert inside a Snackbar!
-          </Alert>
-        </Snackbar>:""}
   
-        <Grid container xs={12} md={5} spacing={3} style={{border: '1px solid white',padding:'2rem'}}>  
+        <Grid container xs={12} md={5} spacing={3} style={{border: '1px solid white',padding:'2rem',border:'1px solid black', justifyContent:'center'}}>  
             <Grid item xs={12} style={{textAlign:'center',color:'black'}}>
               <h2>REGISTER</h2>
             </Grid>
-            <Grid item xs={6} md={6} >
+            <Grid item xs={12} md={6} sm={7} >
                 <TextField
                          fullWidth
                         required
@@ -151,7 +141,7 @@ function Register(){
                         })}
                 />
             </Grid>
-            <Grid item xs={6} >
+            <Grid item xs={12} md={6}sm={7} >
                 <TextField
                        fullWidth
                         required
@@ -167,7 +157,7 @@ function Register(){
                         })}
                 />
             </Grid>
-            <Grid item xs={12} md={12}>
+            <Grid item xs={12} md={12}sm={7}>
               <TextField
                       fullWidth
                       xs={12}
@@ -184,7 +174,7 @@ function Register(){
               />
             </Grid>
   
-            <Grid item xs={12}md={6}>
+            <Grid item xs={12}md={6}sm={7}>
             <TextField
                     fullWidth
                     value={user.phoneno}
@@ -200,9 +190,9 @@ function Register(){
             />
             </Grid>
         
-            <Grid item xs={12} md={6} >
+            <Grid item xs={12} md={6} sm={7}>
             <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                  <InputLabel id="demo-simple-select-label">Type</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
@@ -217,7 +207,7 @@ function Register(){
                   </Select>
                   </FormControl>
             </Grid>
-            <Grid item xs={12} md={6} >
+            <Grid item xs={12} md={6}sm={7} >
               <TextField
                       fullWidth
                       required
@@ -232,7 +222,7 @@ function Register(){
                     })}
               />
               </Grid>
-              <Grid item xs={12} md={6} >
+              <Grid item xs={12} md={6}sm={7} >
               <TextField
                      fullWidth
                       required
@@ -247,7 +237,7 @@ function Register(){
                     })}
               />
               </Grid>
-            <Button style={{width:'30%',margin:'2rem auto'}}  color='success'  onClick={onsubmit}>Submit</Button>
+            <Button style={{width:'30%',margin:'2rem auto',backgroundColor:"rgb(8, 119 , 194)",color:"white",fontSize:"1rem"}}    onClick={onsubmit}>Submit</Button>
         </Grid> 
       </Grid>
   )

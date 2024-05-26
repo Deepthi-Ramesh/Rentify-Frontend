@@ -1,14 +1,12 @@
 
 import { Button, Grid } from "@mui/material";
 import React, { useEffect ,useState} from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import SingleCard from "../card/card";
 import axios from "axios";
 import { HOST_URL } from "../../Constants";
 
 function  Buyerdashboard(){
-
-    const history=useNavigate();
     let {userid}=useParams();
     const [properties,setproperties]=useState([]);
 
@@ -25,75 +23,77 @@ function  Buyerdashboard(){
       });
     };
   
+const applyFilters = () => {
+      const filteredProperties = properties.filter(property => {
+        const matchesLocation = !filters.location ||
+          property.location.toLowerCase().includes(filters.location.toLowerCase());
+        const matchesBedrooms = !filters.noofbedrooms ||
+          property.noofbeadrooms === parseInt(filters.noofbedrooms);
+
+        return matchesLocation && matchesBedrooms;
+      });
+
+      setFilters(filteredProperties);
+};
+
+    useEffect(() => {
+      fetchproperty();
+    }, []); 
   
-    const filteredProperties =async(e)=>{
-      const filteredProperties = properties.filter((property) => {
-        const matchesLocation = filters.location
-          ? property.location.toLowerCase().includes(filters.location.toLowerCase())
-          : true;
-        const matchesBedrooms = filters.noofbedrooms ? property.noofbeadrooms === filters.noofbedrooms : true;
+    useEffect(() => {
+      applyFilters();
+    }, [properties, filters]);
   
-        return  matchesLocation && matchesBedrooms;
-      });3
-  
-      setproperties(filteredProperties);
-    }
-  
+    
     const fetchproperty = async(e) => {
         try {
               const response =  await axios.get(`${HOST_URL}/fetchpropertiesforbuyer`, {
               })
-
               if(response.status==200){
                   setproperties(response?.data?.data);
-                
               }
 
-        } catch (error) {
+        } 
+        catch (error) {
             console.log(error);
         }
 }
-      useEffect(()=>{
-        fetchproperty();
-      },[]);
-
+  
 
     return(
-      <div className="buyer">
-          <p>BUyer Dashboard </p>
-          <div>
-       
+      <div className="buyer"style={{padding:'2rem'}}>
 
-        <label>
-          Location:
-          <input
-            type="text"
-            name="location"
-            value={filters.location}
-            onChange={handleFilterChange}
-          />
-        </label>
+            <p xs={12}style={{fontSize:'2rem',marginLeft:'1rem'}}>Welcome Buyer !</p>
+            <div>
 
-        <label>
-          Bedrooms:
-          <select name="type" value={filters.type} onChange={handleFilterChange}>
-            <option value="">All</option>
-            <option value={1}>1</option>
-            <option value={2}>2</option>
-            <option value={3}>3</option>
-          </select>
-        </label>
-        <Button color="error" onClick={()=>{filteredProperties()}}>Apply</Button>
-      </div>
+            <label>
+              Location:
+              <input
+                type="text"
+                name="location"
+                value={filters.location}
+                onChange={handleFilterChange}
+              />
+            </label>
 
-          <p >Hi name {userid}</p>
-         
-          <Grid container  style={{width:'100%',height:'30rem',justifyContent:"flex-start",alignItems:'center',flexDirection:'row',padding:'1rem 2rem'}}>
-                {properties?.length > 0 && properties.map((property,index)=>(
-                <div key={index}>
-                  <SingleCard  property={property}  type={"buyer"} id={userid}/>
-              </div>))}
-          </Grid>       
+            <label>
+              Bedrooms:
+              <select name="type" value={filters.noofbedrooms} onChange={handleFilterChange}>
+                <option value="">All</option>
+                <option value='1'>1</option>
+                <option value='2'>2</option>
+                <option value='3'>3</option>
+              </select>
+            </label>
+            <Button color="error" onClick={()=>{applyFilters()}}>Apply</Button>
+
+        </div>
+          <Grid container  style={{width:'100%',height:'30rem',justifyContent:"flex-start",alignItems:'center',flexDirection:'row',margin:'1rem 0'}}>
+                    {properties?.length > 0 && properties.map((property,index)=>(
+                    <div key={index}>
+                      <SingleCard  property={property}  type={"buyer"} id={userid}/>
+                  </div>))}
+            </Grid>       
    </div>
     )
 }

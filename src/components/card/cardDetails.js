@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import { Grid, MenuItem } from '@mui/material';
+import { Grid} from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { HOST_URL } from "../../Constants";
+
 function CardDetails({propertyprops}){
 
     const history = useNavigate();
     const [errors,setErrors]=useState({});
     let {userid}=useParams();
-
 
     const [property, setproperty] = useState({
         id:'',
@@ -29,7 +29,6 @@ function CardDetails({propertyprops}){
         setproperty({...property, [e.target.name]: e.target.value})
      } 
 
-
      useEffect(()=>{
       if(propertyprops){
         setproperty(propertyprops);
@@ -39,42 +38,46 @@ function CardDetails({propertyprops}){
      property.id=userid;
   
      const validate = (fieldValues = property) => {
-        let temp = { ...errors };
-        if ("address" in fieldValues) {
-          temp.name =
-            fieldValues.address === "" ? " Name is required" : "";
-        }
-        if ("area" in fieldValues) {
-            temp.name =
-              fieldValues.area === "" ? " Name is required" : "";
-          }
-    
-        if ("location" in fieldValues) {
-          temp.location= 
-          fieldValues.location === "" ? "location is required" : "";
-        }
-              if ("noofbeadrooms" in fieldValues) {
-                temp.noofbeadrooms=
-                  fieldValues.noofbeadrooms === ""
-                   ? "Mobile Number is required" 
-                   :"";
+            let temp = { ...errors };
+            if ("address" in fieldValues) {
+              temp.name =
+                fieldValues.address === "" ? " Name is required" : "";
+            }
+            if ("area" in fieldValues) {
+                temp.name =
+                  fieldValues.area === "" ? " Name is required" : "";
               }
-        if ("noofhospitals" in fieldValues) {
-          temp.noofhospitals=
-            fieldValues.noofhospitals === "" ? " noofhospitals is required" : "";
-        }
-        if ("noofcolleges" in fieldValues) {
-          temp.noofcolleges=
-            fieldValues.noofcolleges === "" ? " noofcolleges is required" : "";
-        }
-        if ("description" in fieldValues) {
-          temp.description=
-            fieldValues.description === "" ? "description is required" : "";
-        }
+        
+            if ("location" in fieldValues) {
+              temp.location= 
+              fieldValues.location === "" ? "location is required" : "";
+            }
+                  if ("noofbeadrooms" in fieldValues) {
+                    temp.noofbeadrooms=
+                      fieldValues.noofbeadrooms === ""
+                      ? "noofbedrooms is required" 
+                      :"";
+                  }
+            if ("noofhospitals" in fieldValues) {
+              temp.noofhospitals=
+                fieldValues.noofhospitals === "" ? " noofhospitals is required" : "";
+            }
+            if ("noofcolleges" in fieldValues) {
+              temp.noofcolleges=
+                fieldValues.noofcolleges === "" ? " noofcolleges is required" : "";
+            }
+            if ("noofbathrooms" in fieldValues) {
+              temp.noofcolleges=
+                fieldValues.noofcolleges === "" ? " noofbathrooms is required" : "";
+            }
+            if ("description" in fieldValues) {
+              temp.description=
+                fieldValues.description === "" ? "description is required" : "";
+            }
         setErrors({
           ...temp,
         });
-       // console.log(temp)
+    
 
         return Object.values(temp).every((x) => x === "");
       };
@@ -97,15 +100,15 @@ function CardDetails({propertyprops}){
            
        }
        const updateproperty = async(e) =>{
-        try{
-            if(validate()){
-              const response=await axios.put(`${HOST_URL}/updateproperty`,{
-                  property:property
-                } 
-            )}
-       } catch(error){
-          console.log(error);
-        }
+            try{
+                if(validate()){
+                  const response=await axios.put(`${HOST_URL}/updateproperty`,{
+                      property:property
+                    } 
+                )}
+          } catch(error){
+              console.log(error);
+            }
       }
    
   return( 
@@ -206,6 +209,21 @@ function CardDetails({propertyprops}){
                           {...(errors.noofcolleges && {
                             error: true,
                             helperText: errors.noofcolleges,
+                        })}
+                  />
+                  </Grid>
+                     <Grid item xs={12} md={6} >
+                  <TextField
+                          fullWidth
+                          required
+                          value={property.noofbathrooms}
+                          onChange={changeHandler}
+                          variant="outlined"
+                          name="noofbathrooms"
+                          label="noofbathrooms"
+                          {...(errors.noofbathrooms && {
+                            error: true,
+                            helperText: errors.noofbathrooms,
                         })}
                   />
                   </Grid>

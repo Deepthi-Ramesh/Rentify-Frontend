@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import { Grid, MenuItem } from '@mui/material';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
-import Buyerdashboard from '../buyer/buyer';
+
 import { HOST_URL } from "../../Constants";
 function Login(){
     const history=useNavigate();
@@ -68,7 +68,7 @@ function Login(){
        }
    
   return(
-      <Grid container display={'flex'} justifyContent={'center'} alignItems={'center'} width={'100%'} height={'100vh'} style={{border: "2px solid red"}}>
+      <Grid container display={'flex'} justifyContent={'center'} alignItems={'center'} width={'100%'} height={'100vh'} >
         
         <Grid container xs={9} md={4} spacing={3} width={'40%'} style={{border: '1px solid black',padding:'1rem'}}  justifyContent={'center'} alignItems={'center'}>  
               <Grid item xs={12} style={{textAlign:'center',color:'black'}}>
@@ -77,8 +77,6 @@ function Login(){
               <Grid item xs={8} md={9}>
                 <TextField
                         fullWidth
-                        xs={12}
-                        md={12}
                         value={user.email}
                         onChange={changeHandler}
                         variant="outlined"
@@ -107,7 +105,7 @@ function Login(){
                 />
                 </Grid>
             
-              <Button style={{width:'30%',margin:'1rem auto'}}  color='success'  onClick={onsubmit}>Submit</Button>
+                <Button style={{width:'30%',margin:'2rem auto',backgroundColor:"rgb(8, 119 , 194)",color:"white",fontSize:"1rem"}}    onClick={onsubmit}>Submit</Button>
         </Grid> 
       </Grid>
   )
