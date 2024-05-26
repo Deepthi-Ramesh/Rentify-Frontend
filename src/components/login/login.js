@@ -5,7 +5,7 @@ import { Grid, MenuItem } from '@mui/material';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import Buyerdashboard from '../buyer/buyer';
-import { HOST_URL } from "../../../Constants";
+import { HOST_URL } from "../../Constants";
 function Login(){
     const history=useNavigate();
     const [errors,setErrors]=useState({});

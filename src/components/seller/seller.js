@@ -7,7 +7,7 @@ import axios from "axios";
 import { common } from "@mui/material/colors";
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import AddIcon from '@mui/icons-material/Add';
-import { HOST_URL } from "../../../Constants";
+import { HOST_URL } from "../../Constants";
 
 function  Sellerdashboard(props){
     const history=useNavigate();

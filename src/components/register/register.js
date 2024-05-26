@@ -8,7 +8,7 @@ import Snackbar from '@mui/material/Snackbar';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
-import { HOST_URL } from "../../../Constants";
+import { HOST_URL } from "../../Constants";
 
 function Register(){
     const history=useNavigate();
@@ -119,7 +119,7 @@ function Register(){
        }
    
   return(
-      <Grid container display={'flex'} justifyContent={'center'} alignItems={'center'} width={'100%'} height={'100vh'} style={{border: "2px solid red"}}>
+      <Grid container display={'flex'} justifyContent={'center'} alignItems={'center'} width={'100%'} height={'100vh'}  >
           {snackbar?<Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
           <Alert
             onClose={handleClose}
@@ -131,7 +131,7 @@ function Register(){
           </Alert>
         </Snackbar>:""}
   
-        <Grid container xs={12} md={5} spacing={3} style={{border: '1px solid black',padding:'2rem'}}>  
+        <Grid container xs={12} md={5} spacing={3} style={{border: '1px solid white',padding:'2rem'}}>  
             <Grid item xs={12} style={{textAlign:'center',color:'black'}}>
               <h2>REGISTER</h2>
             </Grid>

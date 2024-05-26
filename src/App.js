@@ -115,6 +115,7 @@ This transition has led to a surge in demand for real estate. Rents have increas
          <Register/>
        */}
        <div className='rentify'>RENTIFY</div>
+       
        <BrowserRouter>
        <Routes>
         <Route  exact element={<Register/>} path='/'/>

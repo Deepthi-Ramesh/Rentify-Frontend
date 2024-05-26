@@ -8,7 +8,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import CardDetails from "./cardDetails";
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
-import { HOST_URL } from "../../../Constants";
+import { HOST_URL } from "../../Constants";
 function SingleCard({property,type,id}){
 
   

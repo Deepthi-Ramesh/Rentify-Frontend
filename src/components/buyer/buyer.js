@@ -4,7 +4,7 @@ import React, { useEffect ,useState} from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import SingleCard from "../card/card";
 import axios from "axios";
-import { HOST_URL } from "../../../Constants";
+import { HOST_URL } from "../../Constants";
 
 function  Buyerdashboard(){
 

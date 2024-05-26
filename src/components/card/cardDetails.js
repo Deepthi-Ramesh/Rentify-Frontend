@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import { Grid, MenuItem } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
-import { HOST_URL } from "../../../Constants";
+import { HOST_URL } from "../../Constants";
 function CardDetails({propertyprops}){
 
     const history = useNavigate();
