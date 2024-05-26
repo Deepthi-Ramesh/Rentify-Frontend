@@ -8,6 +8,7 @@ import Login from './components/login/login';
 import Sellerdashboard from './components/seller/seller';
 import CardDetails from './components/card/cardDetails';
 import Buyerdashboard from './components/buyer/buyer';
+import Home from './components/Home';
 //import { useNavigate } from "react-router-dom";
 
 function App() {
@@ -114,11 +115,12 @@ This transition has led to a surge in demand for real estate. Rents have increas
   
          <Register/>
        */}
-       <div className='rentify'>RENTIFY</div>
+      
        
        <BrowserRouter>
        <Routes>
-        <Route  exact element={<Register/>} path='/'/>
+       <Route  exact element={<Home/>} path='/'/>
+        <Route  exact element={<Register/>} path='/register'/>
         <Route  exact element={<Login/>} path='/login'/>
         <Route  exact element={<Sellerdashboard/>} path='/Sellerdashboard/:userid'/>
         <Route  exact element={<CardDetails/>} path='/carddetails/:userid'/>
