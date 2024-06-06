@@ -65,7 +65,7 @@ function Register(){
 
         if ("password" in fieldValues) {
           temp.password=
-            fieldValues.password === "" ?"password is required":/^[A-Z]*$/.test(fieldValues)?"":"password should be strong";
+            fieldValues.password === "" ?"password is required":"";
         }
 
         if ("confirm_password" in fieldValues) {
